@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 public class LandingPage extends AppCompatActivity {
-    private static final int SPLASH_TIME_OUT = 8000;
+    private static final int SPLASH_TIME_OUT = 4000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -24,22 +24,20 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private int currentAuthorIndex;
     private int backwardsSwipeCounter = 0;
-
+    private int counter = 0;
 
     private TextView quoteDisplay;
     private TextView authorDisplay;
 
-    Author currentAuthor;
-
-    private Quote previousQuote = new Quote(null, null);
-    private Quote currentQuote = new Quote(null, null);
+    private Author currentAuthor;
+    private Quote currentQuote;
 
     private ArrayList<Author> authors = new ArrayList<>();
     private ArrayList<Quote> previousQuotes = new ArrayList<>();
 
 
-    private Author bobMarley = new Author("Bob Marley","This guy smoked a lot of weed ..", R.drawable.marley);
-    private Author markTwain = new Author("Mark Twain","Cool mofo", R.drawable.marktwain);
+    private Author bobMarley = new Author("Bob Marley", "This guy smoked a lot of weed ..", R.drawable.marley);
+    private Author markTwain = new Author("Mark Twain", "Cool mofo", R.drawable.marktwain);
     private Author reddit = new Author("Reddit", "Big news all day, everyday homie!");
     private Author blondie = new Author("Blondie", "Singer of a famous pop band", R.drawable.blondie);
     private Author jackCanfield = new Author("Jack Canfield", R.drawable.jackcanfield);
@@ -55,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Quote quote4 = new Quote("Wisdom comes from experience. Experience is often a result of lack of wisdom.", terryPratchett);
     private Quote quote5 = new Quote("Everything you want is on the other side of fear.", jackCanfield);
     private Quote quote7 = new Quote("The world is a comedy to those that think; a tragedy to those that feel", horaceWalpole);
-    private Quote quote8 = new Quote("When you see a swordsman, draw your sword. Do not recite poetry to one who is not a poet.",buddhistProverb);
+    private Quote quote8 = new Quote("When you see a swordsman, draw your sword. Do not recite poetry to one who is not a poet.", buddhistProverb);
     private Quote quote6 = new Quote("We judge others by their actions and ourselves by our intentions", reddit);
     private Quote quote9 = new Quote("“I have never let my schooling interfere with my education.", markTwain);
     private Quote quote10 = new Quote("If you tell the truth, you don't have to remember anything.", markTwain);
@@ -68,17 +66,17 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         setContentView(R.layout.activity_main);
         detector = new GestureDetector(this);
 
-        reddit.addQuote(quote6);
-        markTwain.addQuote(quote10);
-        markTwain.addQuote(quote9);
-        bobMarley.addQuote(quote11);
-        cocoChanel.addQuote(quote3);
         leoBurnett.addQuote(quote1);
         blondie.addQuote(quote2);
+        cocoChanel.addQuote(quote3);
         terryPratchett.addQuote(quote4);
         jackCanfield.addQuote(quote5);
+        reddit.addQuote(quote6);
         horaceWalpole.addQuote(quote7);
         buddhistProverb.addQuote(quote8);
+        markTwain.addQuote(quote9);
+        markTwain.addQuote(quote10);
+        bobMarley.addQuote(quote11);
 
         authors.add(bobMarley);
         authors.add(markTwain);
@@ -87,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authors.add(jackCanfield);
         authors.add(blondie);
 
+        System.out.println(getQuoteListSize());
         onSwipeRight();
 
     }
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     }
 
-    public void onClickAuthor (View view) {
+    public void onClickAuthor(View view) {
         Intent authorIntent = new Intent(MainActivity.this, AuthorPageActivity.class);
         authorIntent.putExtra("Author Name", authorDisplay.getText().toString());
         authorIntent.putExtra("Bio", authors.get(currentAuthorIndex).getBio());
@@ -134,27 +133,24 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         if (Math.abs(diffX) > Math.abs(diffY)) {
             //right or left swipe
             if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                if(diffX > 0) {
-                    if(backwardsSwipeCounter == 0) {
+                if (diffX > 0) {
+                    // swipe for previous quotes unless at end of list:
+                    if (previousQuotes.size() > 2 && (previousQuotes.size() - (2 + counter)) >= 0) {
                         runAnimationSwipeRight();
+                    } else {
+                        Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
                     }
-                    else {
-                        onSwipeLeft();
-                    }
-                }
-                else {
+                } else {
+                    // swipe for new quotes:
                     runAnimationSwipeLeft();
-                    backwardsSwipeCounter = 0;
                 }
-
                 result = true;
             }
 
-        }
-        else {
+        } else {
             // up or down swipe
             if (Math.abs(diffY) > SWIPE_THRESHOLD && Math.abs(velocityY) > SWIPE_VELOCITY_THRESHOLD) {
-                if(diffY > 0) {
+                if (diffY > 0) {
                     onSwipeBottom();
                 } else {
                     onSwipeTop();
@@ -175,17 +171,47 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private void onSwipeRight() {
 
-        Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
-
         quoteDisplay = findViewById(R.id.quoteDisplay);
         authorDisplay = findViewById(R.id.quoteAuthor);
 
         currentAuthorIndex = rand.nextInt(authors.size() - 1);
         currentAuthor = authors.get(currentAuthorIndex);
+        currentQuote = authors.get(currentAuthorIndex).getRandomQuote();
 
         authorDisplay.setText(currentAuthor.getName());
-        quoteDisplay.setText(authors.get(currentAuthorIndex).getQuote());
+        quoteDisplay.setText(currentQuote.getQuote());
 
+        previousQuotes.add(currentQuote);
+        Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
+        counter = 0;
+
+
+        /*
+        // check if user has browsed through ALL available quotes:
+        if ( ! previousQuotes.isEmpty() && ( previousQuotes.size() >= getQuoteListSize() ) ) {
+            Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
+        }
+
+        // code to make sure user will not see the same quote twice:
+        if (! previousQuotes.isEmpty() ) {
+            boolean myTruth = false;
+
+            while (! myTruth ) {
+                currentAuthorIndex = rand.nextInt(authors.size() - 1);
+                currentAuthor = authors.get(currentAuthorIndex);
+                currentQuote = authors.get(currentAuthorIndex).getRandomQuote();
+
+                if ( ! previousQuotes.contains(currentQuote)) {
+                    authorDisplay.setText(currentAuthor.getName());
+                    quoteDisplay.setText(currentQuote.getQuote());
+
+                    previousQuotes.add(currentQuote);
+                    counter = 0;
+                    Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
+                    myTruth = true;
+                }
+            }
+        } */
     }
 
     private void onSwipeLeft() {
@@ -195,6 +221,19 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         quoteDisplay = findViewById(R.id.quoteDisplay);
         authorDisplay = findViewById(R.id.quoteAuthor);
 
+        if (counter == 0) {
+            quoteDisplay.setText(previousQuotes.get(previousQuotes.size() - 2).getQuote());
+            authorDisplay.setText(previousQuotes.get(previousQuotes.size() - 2).getAuthor());
+
+            counter++;
+        } else {
+            quoteDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getQuote());
+            authorDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getAuthor());
+
+            counter++;
+        }
+
+
     }
 
     @Override
@@ -203,13 +242,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         return super.onTouchEvent(event);
     }
 
-    private void runAnimationSwipeRight()
-    {
+    private void runAnimationSwipeRight() {
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
         slide.reset();
         slide.setDuration(500);
-        authorDisplay = findViewById(R.id.quoteDisplay);
-        quoteDisplay = findViewById(R.id.quoteAuthor);
 
         slide.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -233,16 +269,12 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authorDisplay.clearAnimation();
         authorDisplay.startAnimation(slide);
 
-        backwardsSwipeCounter = 1;
     }
 
-    private void runAnimationSwipeLeft()
-    {
+    private void runAnimationSwipeLeft() {
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
         slide.reset();
         slide.setDuration(500);
-        quoteDisplay = findViewById(R.id.quoteDisplay);
-        authorDisplay = findViewById(R.id.quoteAuthor);
 
         slide.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -266,4 +298,13 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authorDisplay.clearAnimation();
         authorDisplay.startAnimation(slide);
     }
+
+    public int getQuoteListSize() {
+        int sumOfQuotes = 0;
+        for (int i = 0; i < authors.size(); i++) {
+            sumOfQuotes += authors.get(i).getLength();
+        }
+        return sumOfQuotes;
+    }
+
 }

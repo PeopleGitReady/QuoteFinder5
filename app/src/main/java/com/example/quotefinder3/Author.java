@@ -11,6 +11,7 @@ public class Author {
     private ArrayList<Quote> quotes = new ArrayList<>();
 
     private int pictureId;
+
     public Author (String name) {
         this.name = name;
         bio = "This author does not have a bio yet!";
@@ -75,14 +76,14 @@ public class Author {
         return quotes.size();
     }
 
-    public String getQuote () {
+    public Quote getRandomQuote () {
         Random rand = new Random();
         if (quotes.size() == 1) {
-            return quotes.get(0).getQuote();
+            return quotes.get(0);
         }
         else {
             int index = rand.nextInt(quotes.size() - 1);
-            return quotes.get(index).getQuote();
+            return quotes.get(index);
         }
     }
 
