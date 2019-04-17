@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Random rand = new Random();
     private GestureDetector detector;
 
-    private Button button;
     private int currentAuthorIndex;
     private int backwardsSwipeCounter = 0;
     private int counter = 0;
@@ -164,6 +163,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     private void onSwipeBottom() {
+
+        Intent intent = new Intent(this,CategoryActivity.class);
+        startActivity(intent);
+
         Toast.makeText(this, "Swipe Bottom", Toast.LENGTH_LONG).show();
     }
 
@@ -308,5 +311,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         }
         return sumOfQuotes;
     }
+
+
 
 }
