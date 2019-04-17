@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Random rand = new Random();
     private GestureDetector detector;
 
+    private Button button;
     private int currentAuthorIndex;
     private int backwardsSwipeCounter = 0;
     private int counter = 0;
