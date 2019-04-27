@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private GestureDetector detector;
 
     private int currentAuthorIndex;
-    private int backwardsSwipeCounter = 0;
     private int counter = 0;
+    private boolean endOfList = false;
 
     private TextView quoteDisplay;
     private TextView authorDisplay;
@@ -85,6 +85,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authors.add(cocoChanel);
         authors.add(jackCanfield);
         authors.add(blondie);
+        authors.add(horaceWalpole);
+        authors.add(buddhistProverb);
+        authors.add(terryPratchett);
+        authors.add(leoBurnett);
 
         System.out.println(getQuoteListSize());
         onSwipeRight();
@@ -136,14 +140,18 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffX > 0) {
                     // swipe for previous quotes unless at end of list:
-                    if (previousQuotes.size() > 2 && (previousQuotes.size() - (2 + counter)) >= 0) {
+                    if (previousQuotes.size() > 2 && (previousQuotes.size() - (2 + counter)) >= 0 ) {
                         runAnimationSwipeRight();
                     } else {
                         Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // swipe for new quotes:
-                    runAnimationSwipeLeft();
+                    // swipe for new quotes unless at end of list:
+                    if ( ! endOfList ) {
+                        runAnimationSwipeLeft();
+                    } else {
+                        Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
+                    }
                 }
                 result = true;
             }
@@ -200,11 +208,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         // code to make sure user will not see the same quote twice:
         if (! previousQuotes.isEmpty() ) {
             boolean myTruth = false;
+            int myCounter = 0;
 
             while (! myTruth ) {
+                myCounter ++;
                 currentAuthorIndex = rand.nextInt(authors.size() - 1);
                 currentAuthor = authors.get(currentAuthorIndex);
                 currentQuote = authors.get(currentAuthorIndex).getRandomQuote();
+
 
                 if ( ! previousQuotes.contains(currentQuote)) {
                     authorDisplay.setText(currentAuthor.getName());
@@ -215,8 +226,19 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                     Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
                     myTruth = true;
                 }
+                else if (myCounter > getQuoteListSize()) {
+                    endOfList = true;
+                    Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
+                    myTruth = true;
+                }
             }
-        } */
+
+        }
+        else {
+        }
+
+        */
+
     }
 
     private void onSwipeLeft() {
@@ -228,15 +250,24 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
         if (counter == 0) {
             quoteDisplay.setText(previousQuotes.get(previousQuotes.size() - 2).getQuote());
-            authorDisplay.setText(previousQuotes.get(previousQuotes.size() - 2).getAuthor());
+            authorDisplay.setText(previousQuotes.get(previousQuotes.size() - 2).getAuthor().getName());
+
+            currentAuthorIndex = previousQuotes.size() - 2;
+            currentQuote = previousQuotes.get(previousQuotes.size() - 2);
+            currentAuthor = authors.get(currentAuthorIndex);
 
             counter++;
         } else {
             quoteDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getQuote());
-            authorDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getAuthor());
+            authorDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getAuthor().getName());
+
+            currentAuthorIndex = previousQuotes.size() - ( 2 + counter);
+            currentQuote = previousQuotes.get(previousQuotes.size() - ( 2 + counter));
+            currentAuthor = authors.get(currentAuthorIndex);
 
             counter++;
         }
+
 
 
     }

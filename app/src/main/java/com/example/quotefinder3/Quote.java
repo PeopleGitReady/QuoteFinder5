@@ -16,8 +16,8 @@ public class Quote {
         return quote;
     }
 
-    public String getAuthor () {
-        return author.getName();
+    public Author getAuthor () {
+        return author;
     }
 
 }
