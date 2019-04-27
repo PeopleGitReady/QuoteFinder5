@@ -37,7 +37,7 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-        button_fitness = (Button) findViewById(R.id.fitnessMotiva);
+        button_fitness = (Button) findViewById(R.id.button3);
         button_fitness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
