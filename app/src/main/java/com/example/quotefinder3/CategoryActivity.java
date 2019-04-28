@@ -27,7 +27,7 @@ public class CategoryActivity extends AppCompatActivity {
 
 
 
-        button_smth = (Button) findViewById(R.id.button);
+        button_smth = (Button) findViewById(R.id.button1);
         button_smth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
