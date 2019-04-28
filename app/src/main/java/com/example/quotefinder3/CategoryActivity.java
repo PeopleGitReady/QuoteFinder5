@@ -21,7 +21,7 @@ public class CategoryActivity extends AppCompatActivity {
         button_moti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivtyForMotivation();
+                openActivityForMotivation();
             }
         });
 
@@ -32,7 +32,7 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openActivty();
+                openActivity();
 
             }
         });
@@ -41,17 +41,17 @@ public class CategoryActivity extends AppCompatActivity {
         button_fitness.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivtyForMotivation();
+                openActivityForMotivation();
             }
         });
     }
 
-    public void openActivty(){
+    public void openActivity(){
         Intent homeIntent = new Intent(this, MainActivity.class);
         startActivity(homeIntent);
     }
 
-    public void openActivtyForMotivation(){
+    public void openActivityForMotivation(){
         Intent homeIntent = new Intent(this, MainActivity.class);
         startActivity(homeIntent);
 

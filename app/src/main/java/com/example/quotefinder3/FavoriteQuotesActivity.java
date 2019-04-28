@@ -10,9 +10,9 @@ import java.util.ArrayList;
 
 public class FavoriteQuotesActivity extends AppCompatActivity {
 
-    public static ArrayList<Quote> favorite_quotes = new ArrayList<>();
-    public static ArrayList<Author> favorite_authors = new ArrayList<>();
+    public ArrayList<Quote> favorite_quotes = new ArrayList<>();
 
+    public ArrayList<Author> favorite_authors = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,5 +26,8 @@ public class FavoriteQuotesActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
+    public ArrayList<Quote> getFavorite_quotes() {
+        return favorite_quotes;
+    }
 
 }

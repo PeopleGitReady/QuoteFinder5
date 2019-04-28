@@ -10,6 +10,7 @@
         android:id="@+id/scrollView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp">
 
@@ -23,8 +24,10 @@
         android:id="@+id/window_list"
         android:layout_width="395dp"
         android:layout_height="715dp"
+        android:visibility="visible"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="8dp" />
 
 
-</Listview>
+</android.support.constraint.ConstraintLayout>

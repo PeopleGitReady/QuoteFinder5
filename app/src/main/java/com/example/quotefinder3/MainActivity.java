@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         setContentView(R.layout.activity_main);
         detector = new GestureDetector(this);
 
+        onLikeButtonClick();
+
         leoBurnett.addQuote(quote1);
         blondie.addQuote(quote2);
         cocoChanel.addQuote(quote3);
@@ -93,22 +95,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         System.out.println(getQuoteListSize());
         onSwipeRight();
 
-        Button likeButton = (Button) findViewById(R.id.likeButton);
-        likeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                System.out.println("Quote saved!");
-
-                FavoriteQuotesActivity.favorite_quotes.add(currentQuote);
-                FavoriteQuotesActivity.favorite_authors.add(currentAuthor);
-
-
-                // add quote that is currently being displayed to favorite_authors
-                // if possible, confirm this with a blinking animation
-
-            }
-        });
     }
 
 
@@ -129,6 +115,27 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authorIntent.putExtra("Bio", authors.get(currentAuthorIndex).getBio());
         authorIntent.putExtra("Picture id", authors.get(currentAuthorIndex).getPictureId());
         startActivity(authorIntent);
+    }
+
+    public void onLikeButtonClick () {
+        Button likeButton = (Button) findViewById(R.id.likeButton);
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                FavoriteQuotesActivity favoriteQuotesActivity = new FavoriteQuotesActivity();
+                favoriteQuotesActivity.getFavorite_quotes().add(currentQuote);
+
+
+                // add quote that is currently being displayed to favorite_authors
+                // if possible, confirm this with a blinking animation
+
+
+                // Displays "Quote saved!" on the screen as confirmation to user
+                Toast.makeText(MainActivity.this, "Quote saved!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -190,14 +197,18 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private void onSwipeBottom() {
 
+        Toast.makeText(this, "Swipe Bottom", Toast.LENGTH_LONG).show();
+
         Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
-
-        Toast.makeText(this, "Swipe Bottom", Toast.LENGTH_LONG).show();
     }
 
     private void onSwipeTop() {
+
         Toast.makeText(this, "Swipe Top", Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(this, FavoriteQuotesActivity.class);
+        startActivity(intent);
     }
 
     private void onSwipeRight() {

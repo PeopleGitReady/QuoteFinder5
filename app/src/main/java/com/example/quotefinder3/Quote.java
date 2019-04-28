@@ -1,7 +1,5 @@
 package com.example.quotefinder3;
 
-import java.util.ArrayList;
-
 public class Quote {
 
     private Author author;
