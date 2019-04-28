@@ -89,7 +89,25 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         System.out.println(getQuoteListSize());
         onSwipeRight();
 
+        Button likeButton = (Button) findViewById(R.id.likeButton);
+        likeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                System.out.println("Quote saved!");
+
+                FavoriteQuotesActivity.favorite_quotes.add(currentQuote);
+                FavoriteQuotesActivity.favorite_authors.add(currentAuthor);
+
+
+                // add quote that is currently being displayed to favorite_authors
+                // if possible, confirm this with a blinking animation
+
+            }
+        });
     }
+
+
 
     @Override
     public boolean onDown(MotionEvent e) {
@@ -164,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private void onSwipeBottom() {
 
-        Intent intent = new Intent(this,CategoryActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
 
         Toast.makeText(this, "Swipe Bottom", Toast.LENGTH_LONG).show();
@@ -311,7 +329,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         }
         return sumOfQuotes;
     }
-
 
 
 }
