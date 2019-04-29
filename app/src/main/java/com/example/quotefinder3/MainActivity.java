@@ -17,6 +17,9 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
+
+
+
     public static final int SWIPE_THRESHOLD = 80;
     public static final int SWIPE_VELOCITY_THRESHOLD = 80;
 
@@ -95,7 +98,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         System.out.println(getQuoteListSize());
         onSwipeRight();
 
+
     }
+
+
 
 
 
@@ -117,7 +123,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         startActivity(authorIntent);
     }
 
-    public void onLikeButtonClick () {
+
+    public void onLikeButtonClick() {
         Button likeButton = (Button) findViewById(R.id.likeButton);
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -137,6 +144,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             }
         });
     }
+
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
@@ -165,14 +173,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             if (Math.abs(diffX) > SWIPE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
                 if (diffX > 0) {
                     // swipe for previous quotes unless at end of list:
-                    if (previousQuotes.size() > 2 && (previousQuotes.size() - (2 + counter)) >= 0 ) {
+                    if (previousQuotes.size() > 2 && (previousQuotes.size() - (2 + counter)) >= 0) {
                         runAnimationSwipeRight();
                     } else {
                         Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     // swipe for new quotes unless at end of list:
-                    if ( ! endOfList ) {
+                    if (!endOfList) {
                         runAnimationSwipeLeft();
                     } else {
                         Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
@@ -194,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         }
         return result;
     }
+
 
     private void onSwipeBottom() {
 
@@ -290,13 +299,12 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             quoteDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getQuote());
             authorDisplay.setText(previousQuotes.get(previousQuotes.size() - (2 + counter)).getAuthor().getName());
 
-            currentAuthorIndex = previousQuotes.size() - ( 2 + counter);
-            currentQuote = previousQuotes.get(previousQuotes.size() - ( 2 + counter));
+            currentAuthorIndex = previousQuotes.size() - (2 + counter);
+            currentQuote = previousQuotes.get(previousQuotes.size() - (2 + counter));
             currentAuthor = authors.get(currentAuthorIndex);
 
             counter++;
         }
-
 
 
     }
@@ -364,6 +372,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authorDisplay.startAnimation(slide);
     }
 
+
+
     public int getQuoteListSize() {
         int sumOfQuotes = 0;
         for (int i = 0; i < authors.size(); i++) {
@@ -373,4 +383,30 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
 
+   /* btnF = findViewById(R.id.buttonFavourites);
+        btnF.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    });
+
+    btnS = findViewById(R.id.buttonSettings);
+        btnS.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+
+        }
+    });*/
+
+
+    public void OppenActivity2() {
+
+        Intent intent = new Intent(this, CategoryActivity.class);
+        startActivity(intent);
+    }
+
 }
+
+
+
