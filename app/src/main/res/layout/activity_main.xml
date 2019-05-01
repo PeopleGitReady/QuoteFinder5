@@ -17,7 +17,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:clickable="true"
-        android:onClick="onClickAuthor"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,19 +66,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonCategory"
+        android:id="@+id/categoryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="11dp"
         android:layout_marginRight="11dp"
         android:text="Categories"
-        app:layout_constraintBaseline_toBaselineOf="@+id/buttonFavourites"
-        app:layout_constraintEnd_toStartOf="@+id/buttonFavourites"
+        app:layout_constraintBaseline_toBaselineOf="@+id/favouritesButton"
+        app:layout_constraintEnd_toStartOf="@+id/favouritesButton"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonFavourites"
+        android:id="@+id/favouritesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="27dp"
@@ -87,20 +86,20 @@
         android:layout_marginBottom="16dp"
         android:text="Favourites"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSettings"
-        app:layout_constraintStart_toEndOf="@+id/buttonCategory" />
+        app:layout_constraintEnd_toStartOf="@+id/settingsButton"
+        app:layout_constraintStart_toEndOf="@+id/categoryButton" />
 
     <Button
-        android:id="@+id/buttonSettings"
+        android:id="@+id/settingsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="1dp"
         android:layout_marginRight="1dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="16dp"
         android:text="Settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/buttonFavourites" />
+        app:layout_constraintStart_toEndOf="@+id/favouritesButton" />
 
     <android.support.constraint.Constraints
         android:id="@+id/constraints"

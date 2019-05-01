@@ -17,9 +17,6 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
-
-
-
     public static final int SWIPE_THRESHOLD = 80;
     public static final int SWIPE_VELOCITY_THRESHOLD = 80;
 
@@ -32,6 +29,11 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private TextView quoteDisplay;
     private TextView authorDisplay;
+
+    private Button likeButton;
+    private Button categoryButton;
+    private Button favouritesButton;
+    private Button settingsButton;
 
     private Author currentAuthor;
     private Quote currentQuote;
@@ -71,6 +73,10 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         detector = new GestureDetector(this);
 
         onLikeButtonClick();
+        onCategoryButtonClick();
+        onFavouritesButtonClick();
+        onSettingsButtonClick();
+        onClickAuthor();
 
         leoBurnett.addQuote(quote1);
         blondie.addQuote(quote2);
@@ -97,47 +103,36 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
         System.out.println(getQuoteListSize());
         onSwipeRight();
-
-
     }
 
-
-
-
-
-    @Override
-    public boolean onDown(MotionEvent e) {
-        return false;
-    }
-
-    @Override
-    public void onShowPress(MotionEvent e) {
-
-    }
-
-    public void onClickAuthor(View view) {
-        Intent authorIntent = new Intent(MainActivity.this, AuthorPageActivity.class);
-        authorIntent.putExtra("Author Name", authorDisplay.getText().toString());
-        authorIntent.putExtra("Bio", authors.get(currentAuthorIndex).getBio());
-        authorIntent.putExtra("Picture id", authors.get(currentAuthorIndex).getPictureId());
-        startActivity(authorIntent);
+    public void onClickAuthor() {
+        authorDisplay = (TextView) findViewById(R.id.quoteAuthor);
+        authorDisplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View vieww) {
+                Intent authorIntent = new Intent(MainActivity.this, AuthorPageActivity.class);
+                authorIntent.putExtra("Author Name", authorDisplay.getText().toString());
+                authorIntent.putExtra("Bio", authors.get(currentAuthorIndex).getBio());
+                authorIntent.putExtra("Picture id", authors.get(currentAuthorIndex).getPictureId());
+                startActivity(authorIntent);
+            }
+        });
     }
 
 
     public void onLikeButtonClick() {
-        Button likeButton = (Button) findViewById(R.id.likeButton);
+
+        likeButton = (Button) findViewById(R.id.likeButton);
+
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
                 FavoriteQuotesActivity favoriteQuotesActivity = new FavoriteQuotesActivity();
                 favoriteQuotesActivity.getFavorite_quotes().add(currentQuote);
 
-
                 // add quote that is currently being displayed to favorite_authors
                 // if possible, confirm this with a blinking animation
-
 
                 // Displays "Quote saved!" on the screen as confirmation to user
                 Toast.makeText(MainActivity.this, "Quote saved!", Toast.LENGTH_SHORT).show();
@@ -145,6 +140,43 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         });
     }
 
+    public void onCategoryButtonClick() {
+
+        categoryButton = (Button) findViewById(R.id.categoryButton);
+        categoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onFavouritesButtonClick() {
+
+        favouritesButton = (Button) findViewById(R.id.favouritesButton);
+        favouritesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, FavoriteQuotesActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    public void onSettingsButtonClick() {
+
+        settingsButton = (Button) findViewById(R.id.settingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
@@ -203,23 +235,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         return result;
     }
 
-
-    private void onSwipeBottom() {
-
-        Toast.makeText(this, "Swipe Bottom", Toast.LENGTH_LONG).show();
-
-        Intent intent = new Intent(this, CategoryActivity.class);
-        startActivity(intent);
-    }
-
-    private void onSwipeTop() {
-
-        Toast.makeText(this, "Swipe Top", Toast.LENGTH_LONG).show();
-
-        Intent intent = new Intent(this, FavoriteQuotesActivity.class);
-        startActivity(intent);
-    }
-
     private void onSwipeRight() {
 
         quoteDisplay = findViewById(R.id.quoteDisplay);
@@ -235,48 +250,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         previousQuotes.add(currentQuote);
         Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
         counter = 0;
-
-
-        /*
-        // check if user has browsed through ALL available quotes:
-        if ( ! previousQuotes.isEmpty() && ( previousQuotes.size() >= getQuoteListSize() ) ) {
-            Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
-        }
-
-        // code to make sure user will not see the same quote twice:
-        if (! previousQuotes.isEmpty() ) {
-            boolean myTruth = false;
-            int myCounter = 0;
-
-            while (! myTruth ) {
-                myCounter ++;
-                currentAuthorIndex = rand.nextInt(authors.size() - 1);
-                currentAuthor = authors.get(currentAuthorIndex);
-                currentQuote = authors.get(currentAuthorIndex).getRandomQuote();
-
-
-                if ( ! previousQuotes.contains(currentQuote)) {
-                    authorDisplay.setText(currentAuthor.getName());
-                    quoteDisplay.setText(currentQuote.getQuote());
-
-                    previousQuotes.add(currentQuote);
-                    counter = 0;
-                    Toast.makeText(this, "Swipe Right", Toast.LENGTH_SHORT).show();
-                    myTruth = true;
-                }
-                else if (myCounter > getQuoteListSize()) {
-                    endOfList = true;
-                    Toast.makeText(this, "End of list!", Toast.LENGTH_SHORT).show();
-                    myTruth = true;
-                }
-            }
-
-        }
-        else {
-        }
-
-        */
-
     }
 
     private void onSwipeLeft() {
@@ -305,8 +278,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
             counter++;
         }
-
-
     }
 
     @Override
@@ -337,11 +308,12 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             }
         });
 
+        likeButton.clearAnimation();
+        likeButton.startAnimation(slide);
         quoteDisplay.clearAnimation();
         quoteDisplay.startAnimation(slide);
         authorDisplay.clearAnimation();
         authorDisplay.startAnimation(slide);
-
     }
 
     private void runAnimationSwipeLeft() {
@@ -366,6 +338,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             }
         });
 
+        likeButton.clearAnimation();
+        likeButton.startAnimation(slide);
         quoteDisplay.clearAnimation();
         quoteDisplay.startAnimation(slide);
         authorDisplay.clearAnimation();
@@ -373,8 +347,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
 
-
-    public int getQuoteListSize() {
+    private int getQuoteListSize() {
         int sumOfQuotes = 0;
         for (int i = 0; i < authors.size(); i++) {
             sumOfQuotes += authors.get(i).getLength();
@@ -382,29 +355,17 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         return sumOfQuotes;
     }
 
-
-   /* btnF = findViewById(R.id.buttonFavourites);
-        btnF.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    });
-
-    btnS = findViewById(R.id.buttonSettings);
-        btnS.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-        }
-    });*/
-
-
-    public void OppenActivity2() {
-
-        Intent intent = new Intent(this, CategoryActivity.class);
-        startActivity(intent);
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
     }
+
+    @Override
+    public void onShowPress(MotionEvent e) { }
+
+    private void onSwipeBottom() { }
+
+    private void onSwipeTop() { }
 
 }
 

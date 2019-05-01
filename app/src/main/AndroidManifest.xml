@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SettingsActivity"></activity>
         <activity android:name=".AuthorPageActivity" />
         <activity android:name=".LandingPage">
             <intent-filter>
@@ -18,8 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".CategoryActivity"></activity>
-        <activity android:name=".FavoriteQuotesActivity"></activity>
+        <activity android:name=".CategoryActivity" />
+        <activity android:name=".FavoriteQuotesActivity" />
     </application>
 
 </manifest>
