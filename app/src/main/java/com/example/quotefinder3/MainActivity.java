@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             Scanner scn = new Scanner(in);
             while(scn.hasNext()){
                 String temp = scn.nextLine();
-
+//-------
                 String number = temp.split("[%]")[0];
 
                 String quo = temp.split("[%]")[1];
