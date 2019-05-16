@@ -1,6 +1,7 @@
 package com.example.quotefinder3;
 
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -12,8 +13,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private ArrayList<Quote> previousQuotes = new ArrayList<>();
 
 
-    private Author bobMarley = new Author("Bob Marley", "This guy smoked a lot of weed ..", R.drawable.marley);
+  /*  private Author bobMarley = new Author("Bob Marley", "This guy smoked a lot of weed ..", R.drawable.marley);
     private Author markTwain = new Author("Mark Twain", "Cool mofo", R.drawable.marktwain);
     private Author reddit = new Author("Reddit", "Big news all day, everyday homie!");
     private Author blondie = new Author("Blondie", "Singer of a famous pop band", R.drawable.blondie);
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Quote quote9 = new Quote("“I have never let my schooling interfere with my education.", markTwain);
     private Quote quote10 = new Quote("If you tell the truth, you don't have to remember anything.", markTwain);
     private Quote quote11 = new Quote("When there's a will, there's always a way", bobMarley);
-
+*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         onSettingsButtonClick();
         onClickAuthor();
 
-        leoBurnett.addQuote(quote1);
+      /*  leoBurnett.addQuote(quote1);
         blondie.addQuote(quote2);
         cocoChanel.addQuote(quote3);
         terryPratchett.addQuote(quote4);
@@ -88,9 +92,28 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         buddhistProverb.addQuote(quote8);
         markTwain.addQuote(quote9);
         markTwain.addQuote(quote10);
-        bobMarley.addQuote(quote11);
+        bobMarley.addQuote(quote11);*/
+        AssetManager manager = getAssets();
+        try {
+            InputStream in = manager.open("quotes.txt");
+            Scanner scn = new Scanner(in);
+            while(scn.hasNext()){
+                String temp = scn.nextLine();
 
-        authors.add(bobMarley);
+                String number = temp.split("[%]")[0];
+
+                String quo = temp.split("[%]")[1];
+                String author = temp.split("[%]")[2];
+                Author tempAuthor = new Author(author);
+                Quote tempQuote = new Quote(quo,tempAuthor);
+                tempAuthor.addQuote(tempQuote);
+                authors.add(tempAuthor);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    /*    authors.add(bobMarley);
         authors.add(markTwain);
         authors.add(reddit);
         authors.add(cocoChanel);
@@ -99,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authors.add(horaceWalpole);
         authors.add(buddhistProverb);
         authors.add(terryPratchett);
-        authors.add(leoBurnett);
+        authors.add(leoBurnett);*/
 
         System.out.println(getQuoteListSize());
         onSwipeRight();
