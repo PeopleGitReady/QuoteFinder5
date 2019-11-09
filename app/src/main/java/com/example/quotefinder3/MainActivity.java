@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private void runAnimationSwipeRight() {
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
         slide.reset();
-        slide.setDuration(500);
+        slide.setDuration(100);
 
         slide.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -342,7 +342,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private void runAnimationSwipeLeft() {
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
         slide.reset();
-        slide.setDuration(500);
+        slide.setDuration(100);
 
         slide.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -386,7 +386,13 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     @Override
     public void onShowPress(MotionEvent e) { }
 
-    private void onSwipeBottom() { }
+    private void onSwipeBottom() {
+
+
+
+
+
+    }
 
     private void onSwipeTop() { }
 
