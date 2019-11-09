@@ -20,4 +20,8 @@ public class Quote {
         return author;
     }
 
+    public String getQuoteType() {
+        return quoteType;
+    }
+
 }

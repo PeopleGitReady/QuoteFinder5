@@ -12,6 +12,9 @@ public class CategoryActivity extends AppCompatActivity {
     private Button button_humor;
     private Button button_moti;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +24,12 @@ public class CategoryActivity extends AppCompatActivity {
         button_moti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivityForMotivation();
+
+
+                    Intent intent = new Intent(CategoryActivity.this, MainActivity.class);
+                    startActivity(intent);
+
+               // openActivityForMotivation();
             }
         });
 
@@ -32,7 +40,7 @@ public class CategoryActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                openActivity();
+
 
             }
         });
@@ -41,13 +49,13 @@ public class CategoryActivity extends AppCompatActivity {
         button_humor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivityForMotivation();
+                openActivityBrowser();
             }
         });
     }
 
-    public void openActivity(){
-        Intent homeIntent = new Intent(this, MainActivity.class);
+    public void openActivityBrowser(){
+        Intent homeIntent = new Intent(this, HurmorBrowser.class);
         startActivity(homeIntent);
     }
 

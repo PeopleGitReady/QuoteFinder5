@@ -21,6 +21,9 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".CategoryActivity" />
         <activity android:name=".FavoriteQuotesActivity" />
+        <activity android:name=".HurmorBrowser" />
+
+
     </application>
 
 </manifest>

@@ -10,6 +10,8 @@ public class Author {
 
     private ArrayList<Quote> quotes = new ArrayList<>();
 
+    private Quote quote ;
+
     private int pictureId;
 
     public Author (String name) {
@@ -58,10 +60,16 @@ public class Author {
         quotes.add(quote);
     }
 
-    public void addQuote (Quote quote) {
+    public void addQuote (Quote quotesss) {
+        quote = quotesss;
         quotes.add(quote);
+
     }
 
+
+    public Quote getQuote() {
+        return quote;
+    }
 
     public String getName () {
         return name;
@@ -71,18 +79,17 @@ public class Author {
         return pictureId;
     }
 
-
     public int getLength () {
         return quotes.size();
     }
 
-    public Quote getRandomQuote () {
+  public Quote getRandomQuote () {
         Random rand = new Random();
         if (quotes.size() == 1) {
             return quotes.get(0);
         }
         else {
-            int index = rand.nextInt(quotes.size() - 1);
+            int index = rand.nextInt(quotes.size() -1);
             return quotes.get(index);
         }
     }
@@ -91,8 +98,8 @@ public class Author {
         return bio;
     }
 
+    public ArrayList<Quote> getQuotes() {
 
-
-
-
+        return quotes;
+    }
 }

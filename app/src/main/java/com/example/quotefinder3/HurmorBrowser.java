@@ -1,8 +1,8 @@
 package com.example.quotefinder3;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -15,7 +15,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
+public class HurmorBrowser extends AppCompatActivity implements GestureDetector.OnGestureListener  {
 
     public static final int SWIPE_THRESHOLD = 80;
     public static final int SWIPE_VELOCITY_THRESHOLD = 80;
@@ -82,16 +82,14 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             String quotetype = authors.get(i).getQuotes().get(i).getQuoteType();
 
             if(quotetype.equalsIgnoreCase("Motivation")){
-            motivationList.add(authors.get(i).getQuote());
+                motivationList.add(authors.get(i).getQuote());
             }else if(quotetype.equalsIgnoreCase("Humor")){
-                System.out.println(humorList.size());
-            humorList.add(authors.get(i).getQuote());
+                humorList.add(authors.get(i).getQuote());
             }else if(quotetype.equalsIgnoreCase("love")){
-            loveList.add(authors.get(i).getQuote());
-
+                loveList.add(authors.get(i).getQuote());
             }
 
-    }
+        }
 
     }
 
@@ -143,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         authorDisplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View vieww) {
-                Intent authorIntent = new Intent(MainActivity.this, AuthorPageActivity.class);
+                Intent authorIntent = new Intent(HurmorBrowser.this, AuthorPageActivity.class);
                 authorIntent.putExtra("Author Name", authorDisplay.getText().toString());
                 authorIntent.putExtra("Bio", authors.get(currentAuthorIndex).getBio());
                 authorIntent.putExtra("Picture id", authors.get(currentAuthorIndex).getPictureId());
@@ -168,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 // if possible, confirm this with a blinking animation
 
                 // Displays "Quote saved!" on the screen as confirmation to user
-                Toast.makeText(MainActivity.this, "Quote saved!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(HurmorBrowser.this, "Quote saved!", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -180,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
+                Intent intent = new Intent(HurmorBrowser.this, CategoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -193,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(MainActivity.this, FavoriteQuotesActivity.class);
+                Intent intent = new Intent(HurmorBrowser.this, FavoriteQuotesActivity.class);
                 startActivity(intent);
             }
         });
@@ -205,7 +203,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(HurmorBrowser.this, SettingsActivity.class);
                 startActivity(intent);
             }
         });
@@ -414,7 +412,5 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     public ArrayList<Quote> getHumorList() {
         return humorList;
     }
+
 }
-
-
-
