@@ -8,8 +8,8 @@ import android.widget.Button;
 
 public class CategoryActivity extends AppCompatActivity {
 
-    private Button button_smth;
-    private Button button_fitness;
+    private Button button_love;
+    private Button button_humor;
     private Button button_moti;
 
     @Override
@@ -27,8 +27,8 @@ public class CategoryActivity extends AppCompatActivity {
 
 
 
-        button_smth = (Button) findViewById(R.id.button1);
-        button_smth.setOnClickListener(new View.OnClickListener() {
+        button_love = (Button) findViewById(R.id.love);
+        button_love.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -37,8 +37,8 @@ public class CategoryActivity extends AppCompatActivity {
             }
         });
 
-        button_fitness = (Button) findViewById(R.id.button3);
-        button_fitness.setOnClickListener(new View.OnClickListener() {
+        button_humor = (Button) findViewById(R.id.humor);
+        button_humor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openActivityForMotivation();

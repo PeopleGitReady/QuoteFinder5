@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     private ArrayList<Author> authors = new ArrayList<>();
     private ArrayList<Quote> previousQuotes = new ArrayList<>();
+    private ArrayList<Quote> motivationList = new ArrayList<>();
+    private ArrayList<Quote> loveList = new ArrayList<>();
+    private ArrayList<Quote> humorList = new ArrayList<>();
+
+
 
 
     private Author bobMarley = new Author("Bob Marley", "This guy smoked a lot of weed ..", R.drawable.marley);
@@ -53,18 +58,30 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Author buddhistProverb = new Author("Buddhist Proverb");
     private Author horaceWalpole = new Author("Horace Walpole");
 
-    private Quote quote1 = new Quote("If you reach for a star you might not get one. But you won't come up with a hand full of mud either.", leoBurnett);
-    private Quote quote2 = new Quote("The tide is high but I'm holding on.", blondie);
-    private Quote quote3 = new Quote("Simplicity is the key note of all true elegance.", cocoChanel);
-    private Quote quote4 = new Quote("Wisdom comes from experience. Experience is often a result of lack of wisdom.", terryPratchett);
-    private Quote quote5 = new Quote("Everything you want is on the other side of fear.", jackCanfield);
-    private Quote quote7 = new Quote("The world is a comedy to those that think; a tragedy to those that feel", horaceWalpole);
-    private Quote quote8 = new Quote("When you see a swordsman, draw your sword. Do not recite poetry to one who is not a poet.", buddhistProverb);
-    private Quote quote6 = new Quote("We judge others by their actions and ourselves by our intentions", reddit);
-    private Quote quote9 = new Quote("“I have never let my schooling interfere with my education.", markTwain);
-    private Quote quote10 = new Quote("If you tell the truth, you don't have to remember anything.", markTwain);
-    private Quote quote11 = new Quote("When there's a will, there's always a way", bobMarley);
+    private Quote quote1 = new Quote("If you reach for a star you might not get one. But you won't come up with a hand full of mud either.", leoBurnett, "Motivation");
+    private Quote quote2 = new Quote("The tide is high but I'm holding on.", blondie, "Motivation");
+    private Quote quote3 = new Quote("Simplicity is the key note of all true elegance.", cocoChanel, "Motivation");
+    private Quote quote4 = new Quote("Wisdom comes from experience. Experience is often a result of lack of wisdom.", terryPratchett,"Motivation");
+    private Quote quote5 = new Quote("Everything you want is on the other side of fear.", jackCanfield,"Motivation");
+    private Quote quote7 = new Quote("The world is a comedy to those that think; a tragedy to those that feel", horaceWalpole,"Motivation");
+    private Quote quote8 = new Quote("When you see a swordsman, draw your sword. Do not recite poetry to one who is not a poet.", buddhistProverb,"Motivation");
+    private Quote quote6 = new Quote("We judge others by their actions and ourselves by our intentions", reddit,"Motivation");
+    private Quote quote9 = new Quote("“I have never let my schooling interfere with my education.", markTwain,"Motivation");
+    private Quote quote10 = new Quote("If you tell the truth, you don't have to remember anything.", markTwain,"Motivation");
+    private Quote quote11 = new Quote("When there's a will, there's always a way", bobMarley,"Motivation");
 
+
+
+    public void divideQuote(){
+
+        for(int i =0; i < authors.size()-1;i++){
+            authors.get(i).get
+
+
+
+    }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -168,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     public void onSettingsButtonClick() {
 
-        settingsButton = (Button) findViewById(R.id.settingsButton);
+        settingsButton = (Button) findViewById(R.id.homeButton);
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,7 +296,6 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
             counter++;
         }
     }
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         detector.onTouchEvent(event);
@@ -289,7 +305,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private void runAnimationSwipeRight() {
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.slide_out_right);
         slide.reset();
-        slide.setDuration(500);
+        slide.setDuration(250);
 
         slide.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -319,7 +335,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private void runAnimationSwipeLeft() {
         Animation slide = AnimationUtils.loadAnimation(this, R.anim.slide_out_left);
         slide.reset();
-        slide.setDuration(500);
+        slide.setDuration(250);
 
         slide.setAnimationListener(new Animation.AnimationListener() {
             @Override

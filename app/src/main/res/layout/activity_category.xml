@@ -43,11 +43,11 @@
             android:color="@color/transparent" />
 
         <Button
-            android:id="@+id/button1"
-            android:layout_width="match_parent"
+            android:id="@+id/love"
+            android:layout_width="350dp"
             android:layout_height="100dp"
             android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 1 " />
+            android:text="Love " />
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
@@ -55,7 +55,7 @@
 
         <Button
             android:id="@+id/button_Moti"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="100dp"
             android:background="@drawable/transparent_bg_bordered_button"
             android:text="Motivational " />
@@ -65,178 +65,16 @@
             android:layout_height="50dp" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/humor"
             style="@style/Widget.AppCompat.Button.Small"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="100dp"
             android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 3 " />
+            android:text="Humor " />
 
         <android.support.v4.widget.Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button_4" />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 5 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button6"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 6 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button7"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 7 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button8"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 8 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-
-        <Button
-            android:id="@+id/button9"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 9 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button10"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 10 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button11"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button11 " />
-
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 12 " />
-
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button_13" />
-
-        <Button
-            android:id="@+id/button14"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button_14" />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 15 " />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 16 " />
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 17 " />
-
-        <Button
-            android:id="@+id/button18"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@drawable/transparent_bg_bordered_button"
-            android:text="button 18 " />
-
-        <Button
-            android:id="@+id/button19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="button 19 " />
-
-        <Button
-            android:id="@+id/button20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="button 20 " />
-
-        <Button
-            android:id="@+id/button21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="button 21 " />
-
-        <Button
-            android:id="@+id/button22"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="button 22 " />
 
 
     </LinearLayout>
