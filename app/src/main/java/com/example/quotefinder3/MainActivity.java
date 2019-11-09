@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Button likeButton;
     private Button categoryButton;
     private Button favouritesButton;
-    private Button settingsButton;
+    private Button homeButton;
 
     private Author currentAuthor;
     private Quote currentQuote;
@@ -70,6 +70,29 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Quote quote11 = new Quote("When there's a will, there's always a way", bobMarley);
 */
 
+  public void fillIN(){
+      AssetManager manager = getAssets();
+      try {
+          InputStream in = manager.open("quotes.txt");
+          Scanner scn = new Scanner(in);
+          while(scn.hasNext()){
+              String temp = scn.nextLine();
+//-------
+              String number = temp.split("[%]")[0];
+
+              String quo = temp.split("[%]")[1];
+              String author = temp.split("[%]")[2];
+              Author tempAuthor = new Author(author);
+              Quote tempQuote = new Quote(quo,tempAuthor);
+              tempAuthor.addQuote(tempQuote);
+              authors.add(tempAuthor);
+
+          }
+      } catch (IOException e) {
+          e.printStackTrace();
+      }
+  }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,26 +116,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         markTwain.addQuote(quote9);
         markTwain.addQuote(quote10);
         bobMarley.addQuote(quote11);*/
-        AssetManager manager = getAssets();
-        try {
-            InputStream in = manager.open("quotes.txt");
-            Scanner scn = new Scanner(in);
-            while(scn.hasNext()){
-                String temp = scn.nextLine();
-//-------
-                String number = temp.split("[%]")[0];
-
-                String quo = temp.split("[%]")[1];
-                String author = temp.split("[%]")[2];
-                Author tempAuthor = new Author(author);
-                Quote tempQuote = new Quote(quo,tempAuthor);
-                tempAuthor.addQuote(tempQuote);
-                authors.add(tempAuthor);
-
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        fillIN();
     /*    authors.add(bobMarley);
         authors.add(markTwain);
         authors.add(reddit);
@@ -191,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
 
     public void onSettingsButtonClick() {
 
-        settingsButton = (Button) findViewById(R.id.settingsButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        homeButton = (Button) findViewById(R.id.home);
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
@@ -259,11 +263,11 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     }
 
     private void onSwipeRight() {
-
+fillIN();
         quoteDisplay = findViewById(R.id.quoteDisplay);
         authorDisplay = findViewById(R.id.quoteAuthor);
 
-        currentAuthorIndex = rand.nextInt(authors.size() - 1);
+        currentAuthorIndex = rand.nextInt(10 - 1);
         currentAuthor = authors.get(currentAuthorIndex);
         currentQuote = authors.get(currentAuthorIndex).getRandomQuote();
 
