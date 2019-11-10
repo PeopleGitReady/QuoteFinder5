@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         detector = new GestureDetector(this);
 
         onLikeButtonClick();
-        onCategoryButtonClick();
+        //onCategoryButtonClick();
         onFavouritesButtonClick();
         onHomeButtonClick();
         onClickAuthor();
@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         });
     }
 
-    public void onCategoryButtonClick() {
+    /*public void onCategoryButtonClick() {
 
         categoryButton = (Button) findViewById(R.id.categoryButton);
         categoryButton.setOnClickListener(new View.OnClickListener() {
@@ -184,7 +184,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
                 startActivity(intent);
             }
         });
-    }
+    }*/
 
     public void onFavouritesButtonClick() {
 
