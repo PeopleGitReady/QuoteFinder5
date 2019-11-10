@@ -8,6 +8,7 @@ The idea behind the app was to test our programming skills and develop our ideas
 Feel free to use our code or parts of it for other projects. 
 
 Possible improvements
+
 Enhance the swipe/fling functionality.
 Stop duplicates from showing when browsing.
 We have also tried to implement a category functionality for a user to browse through different genres of quotes. Because of time constraints we decided not to finish it. 
