@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
     private Button likeButton;
     private Button categoryButton;
     private Button favouritesButton;
-    private Button settingsButton;
+    private Button homeButton;
 
     private Author currentAuthor;
     private Quote currentQuote;
@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         onLikeButtonClick();
         onCategoryButtonClick();
         onFavouritesButtonClick();
-        onSettingsButtonClick();
+        onHomeButtonClick();
         onClickAuthor();
         divideQuote();
 
@@ -199,14 +199,15 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         });
     }
 
-    public void onSettingsButtonClick() {
+    public void onHomeButtonClick() {
 
-        settingsButton = (Button) findViewById(R.id.homeButton);
-        settingsButton.setOnClickListener(new View.OnClickListener() {
+        homeButton = (Button) findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                Intent intent = new Intent(MainActivity.this, MainActivity.class);
                 startActivity(intent);
+                Toast.makeText(MainActivity.this, "Home Button Pressed", Toast.LENGTH_SHORT).show();
             }
         });
     }

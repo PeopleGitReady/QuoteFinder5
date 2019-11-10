@@ -102,4 +102,9 @@ public class Author {
 
         return quotes;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

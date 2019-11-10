@@ -24,4 +24,10 @@ public class Quote {
         return quoteType;
     }
 
+    @Override
+    public String toString() {
+        return
+                 '\'' + quote + '\'' +
+                " -" + author.toString()  ;
+    }
 }
